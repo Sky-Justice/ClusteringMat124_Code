@@ -1,0 +1,57 @@
+#genome sequences BLASTED from https://blast.ncbi.nlm.nih.gov/Blast.cgi#9181902 
+subj2701 = 'AATAATGAAGAAGGGGGAGACTATTATGATGATGAGCTGTTCTCTGATGTCCAAGATATT'
+subj2761 = 'AAAACAGCCTTGGCCAAAATACACGAGGATAATCAGAAGATAATCTCCAAGCTAGAATCA'
+subj2821 = 'CTGCTGTTATTGAAGGGAGAAGTTGAGTCAATTAAGAAGCAGATCAACAGGCAAAATATC'
+subj2881 = 'AGCATATCCACCCTGGAAGGACACCTCTCAAGCATCATGATCGCCATTCCTGGACTTGGG'
+count = 0
+
+subj2941 = 'AAGGATCCCAACGACCCCACTGCAGATGTCGAAATCAATCCCGACTTGAAACCCATCATA'
+subj3001 = 'GGCAGAGATTCAGGCCGAGCACTGGCCGAAGTTCTCAAGAAACCCGTTGCCAGCCGACAA'
+subj3061 = 'CTCCAAGGAATGACAAATGGACGGACCAGTTCCAGAGGACAGCTGCTGAAGGAATTTCAG'
+subj3121 = 'CTAAAGCCGATCGGGAAAAAGATGAGCTCAGCCGTCGGGTTTGTTCCTGACACCGGCCCT'
+
+def counter(x,y,count):
+    count = 0
+    for i in range(60):
+        if x[i] != y[i]:
+            count += 1
+    print(count)
+def main():
+    #cluster 1
+
+    """counter(subj2701, subj2761, count)
+    counter(subj2761, subj2821, count)
+    counter(subj2701, subj2821, count)
+    counter(subj2701, subj2881, count)
+    counter(subj2881, subj2761, count)
+    counter(subj2821, subj2881, count)"""
+
+    #cluster 2
+    """counter(subj2941, subj3001, count)
+    counter(subj3001, subj3061, count)
+    counter(subj2941, subj3061, count)
+    counter(subj2941, subj3121, count)
+    counter(subj3001, subj3121, count)
+    counter(subj3061, subj3121, count)"""
+
+    #Single Linkage
+    counter(subj2701, subj2941, count)
+    counter(subj2701, subj3001, count)
+    counter(subj2701, subj3061, count)
+    counter(subj2701, subj3121, count)
+
+    counter(subj2761, subj2941, count)
+    counter(subj2761, subj3001, count)
+    counter(subj2761, subj3061, count)
+    counter(subj2761, subj3121, count)
+
+    counter(subj2821, subj2941, count)
+    counter(subj2821, subj3001, count)
+    counter(subj2821, subj3061, count)
+    counter(subj2821, subj3121, count)
+
+    counter(subj2881, subj2941, count)
+    counter(subj2881, subj3001, count)
+    counter(subj2881, subj3061, count)
+    counter(subj2881, subj3121, count)
+main()

@@ -1,14 +1,21 @@
 #genome sequences BLASTED from https://blast.ncbi.nlm.nih.gov/Blast.cgi#9181902 
-subj2701 = 'AATAATGAAGAAGGGGGAGACTATTATGATGATGAGCTGTTCTCTGATGTCCAAGATATT'
-subj2761 = 'AAAACAGCCTTGGCCAAAATACACGAGGATAATCAGAAGATAATCTCCAAGCTAGAATCA'
-subj2821 = 'CTGCTGTTATTGAAGGGAGAAGTTGAGTCAATTAAGAAGCAGATCAACAGGCAAAATATC'
-subj2881 = 'AGCATATCCACCCTGGAAGGACACCTCTCAAGCATCATGATCGCCATTCCTGGACTTGGG'
-count = 0
+import random
 
-subj2941 = 'AAGGATCCCAACGACCCCACTGCAGATGTCGAAATCAATCCCGACTTGAAACCCATCATA'
-subj3001 = 'GGCAGAGATTCAGGCCGAGCACTGGCCGAAGTTCTCAAGAAACCCGTTGCCAGCCGACAA'
-subj3061 = 'CTCCAAGGAATGACAAATGGACGGACCAGTTCCAGAGGACAGCTGCTGAAGGAATTTCAG'
-subj3121 = 'CTAAAGCCGATCGGGAAAAAGATGAGCTCAGCCGTCGGGTTTGTTCCTGACACCGGCCCT'
+#Cluster 1
+Zagreb3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+AIK_C3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+Schwarz3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+Rubeovax3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+
+#Cluster 2
+Shanghai3601 ='TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+ChangChun3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+Cam_70_3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+Moraten3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+count = 0
+text_file = open("seqdump.txt",'r')
+master_sequence = text_file.read()
+text_file.close()
 
 def counter(x,y,count):
     count = 0
@@ -16,42 +23,45 @@ def counter(x,y,count):
         if x[i] != y[i]:
             count += 1
     print(count)
+
 def main():
     #cluster 1
-
-    """counter(subj2701, subj2761, count)
-    counter(subj2761, subj2821, count)
-    counter(subj2701, subj2821, count)
-    counter(subj2701, subj2881, count)
-    counter(subj2881, subj2761, count)
-    counter(subj2821, subj2881, count)"""
+    print("Cluster 1")
+    counter(Zagreb3601, AIK_C3601, count)
+    counter(Zagreb3601, Schwarz3601, count)
+    counter(Zagreb3601, Rubeovax3601, count)
+    counter(Rubeovax3601, Schwarz3601, count)
+    counter(AIK_C3601, Schwarz3601, count)
+    counter(AIK_C3601, Rubeovax3601, count)
 
     #cluster 2
-    """counter(subj2941, subj3001, count)
-    counter(subj3001, subj3061, count)
-    counter(subj2941, subj3061, count)
-    counter(subj2941, subj3121, count)
-    counter(subj3001, subj3121, count)
-    counter(subj3061, subj3121, count)"""
+    print("Cluster 2")
+    counter(Shanghai3601, ChangChun3601, count)
+    counter(Shanghai3601, Cam_70_3601, count)
+    counter(Shanghai3601, Moraten3601, count)
+    counter(Cam_70_3601, Moraten3601, count)
+    counter(Cam_70_3601, ChangChun3601, count)
+    counter(ChangChun3601, Moraten3601, count)
 
-    #Single Linkage
-    counter(subj2701, subj2941, count)
-    counter(subj2701, subj3001, count)
-    counter(subj2701, subj3061, count)
-    counter(subj2701, subj3121, count)
-
-    counter(subj2761, subj2941, count)
-    counter(subj2761, subj3001, count)
-    counter(subj2761, subj3061, count)
-    counter(subj2761, subj3121, count)
-
-    counter(subj2821, subj2941, count)
-    counter(subj2821, subj3001, count)
-    counter(subj2821, subj3061, count)
-    counter(subj2821, subj3121, count)
-
-    counter(subj2881, subj2941, count)
-    counter(subj2881, subj3001, count)
-    counter(subj2881, subj3061, count)
-    counter(subj2881, subj3121, count)
+ #Single Linkage
+    print("Zagreb")
+    counter(Zagreb3601, Shanghai3601, count)
+    counter(Zagreb3601, ChangChun3601, count)
+    counter(Zagreb3601, Cam_70_3601, count)
+    counter(Zagreb3601, Moraten3601, count)
+    print("schwarz")
+    counter(Schwarz3601, Shanghai3601, count)
+    counter(Schwarz3601, ChangChun3601, count)
+    counter(Schwarz3601, Cam_70_3601, count)
+    counter(Schwarz3601, Moraten3601, count)
+    print("AIK_C")
+    counter(AIK_C3601, Shanghai3601, count)
+    counter(AIK_C3601, ChangChun3601, count)
+    counter(AIK_C3601, Cam_70_3601, count)
+    counter(AIK_C3601, Moraten3601, count)
+    print("rubeovax")
+    counter(Rubeovax3601, Shanghai3601, count)
+    counter(Rubeovax3601, ChangChun3601, count)
+    counter(Rubeovax3601, Cam_70_3601, count)
+    counter(Rubeovax3601, Moraten3601, count)
 main()

@@ -1,5 +1,4 @@
-import random
-#Cluster Master 1 Opening
+# Opening Textfile Sequences
 count = 0
 text_file0 = open("RubeovaxMaster.txt",'r')
 text_file1 = open("ZagrebMaster.txt",'r')

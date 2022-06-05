@@ -1,67 +1,75 @@
-#genome sequences BLASTED from https://blast.ncbi.nlm.nih.gov/Blast.cgi#9181902 
 import random
-
-#Cluster 1
-Zagreb3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-AIK_C3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-Schwarz3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-Rubeovax3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-
-#Cluster 2
-Shanghai3601 ='TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-ChangChun3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATCCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-Cam_70_3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
-Moraten3601 = 'TGCTGGGGGTTGTTGAGGACAGCGATTCCCTAGGGCCTCCAATCGGGCGAGCATTTGGGT'
+#Cluster Master 1 Opening
 count = 0
-text_file = open("seqdump.txt",'r')
-master_sequence = text_file.read()
-text_file.close()
+text_file0 = open("RubeovaxMaster.txt",'r')
+text_file1 = open("ZagrebMaster.txt",'r')
+text_file2 = open("AIK_CMaster.txt",'r')
+text_file3 = open("SchwarzMaster.txt",'r')
+
+text_file4 = open("ChangChun_47Master.txt",'r')
+text_file5 = open("MoratenMaster.txt",'r')
+text_file6 = open("ShangHai_191Master.txt",'r')
+text_file7 = open("Cam70Master.txt",'r')
+
+# Reading textfiles
+RubeovaxMaster = text_file0.read()
+ZagrebMaster = text_file1.read()
+AIK_CMaster = text_file2.read()
+SchwarzMaster = text_file3.read()
+ChangChun_47Master = text_file4.read()
+MoratenMaster = text_file5.read()
+ShangHai191Master = text_file6.read()
+Cam70_Master = text_file7.read()
+
+file_list = [text_file0, text_file1, text_file2, text_file3, text_file4,text_file5, text_file6, text_file7]
+for f in file_list:
+    f.close()
 
 def counter(x,y,count):
     count = 0
-    for i in range(60):
+    for i in range(15894):
         if x[i] != y[i]:
             count += 1
-    print(count)
+    print(float(count/15894))
 
 def main():
     #cluster 1
     print("Cluster 1")
-    counter(Zagreb3601, AIK_C3601, count)
-    counter(Zagreb3601, Schwarz3601, count)
-    counter(Zagreb3601, Rubeovax3601, count)
-    counter(Rubeovax3601, Schwarz3601, count)
-    counter(AIK_C3601, Schwarz3601, count)
-    counter(AIK_C3601, Rubeovax3601, count)
-
+    counter(ZagrebMaster, AIK_CMaster, count)
+    counter(ZagrebMaster, SchwarzMaster, count)
+    counter(ZagrebMaster, RubeovaxMaster, count)
+    counter(RubeovaxMaster, SchwarzMaster, count)
+    counter(AIK_CMaster, SchwarzMaster, count)
+    counter(AIK_CMaster, RubeovaxMaster, count)
+    
     #cluster 2
     print("Cluster 2")
-    counter(Shanghai3601, ChangChun3601, count)
-    counter(Shanghai3601, Cam_70_3601, count)
-    counter(Shanghai3601, Moraten3601, count)
-    counter(Cam_70_3601, Moraten3601, count)
-    counter(Cam_70_3601, ChangChun3601, count)
-    counter(ChangChun3601, Moraten3601, count)
+    counter(ShangHai191Master, ChangChun_47Master, count)
+    counter(ShangHai191Master, Cam70_Master, count)
+    counter(ShangHai191Master, MoratenMaster, count)
+    counter(Cam70_Master, MoratenMaster, count)
+    counter(Cam70_Master, ChangChun_47Master, count)
+    counter(ChangChun_47Master, MoratenMaster, count)
 
  #Single Linkage
     print("Zagreb")
-    counter(Zagreb3601, Shanghai3601, count)
-    counter(Zagreb3601, ChangChun3601, count)
-    counter(Zagreb3601, Cam_70_3601, count)
-    counter(Zagreb3601, Moraten3601, count)
+    counter(ZagrebMaster, ShangHai191Master, count)
+    counter(ZagrebMaster, ChangChun_47Master, count)
+    counter(ZagrebMaster, Cam70_Master, count)
+    counter(ZagrebMaster, MoratenMaster, count)
     print("schwarz")
-    counter(Schwarz3601, Shanghai3601, count)
-    counter(Schwarz3601, ChangChun3601, count)
-    counter(Schwarz3601, Cam_70_3601, count)
-    counter(Schwarz3601, Moraten3601, count)
+    counter(SchwarzMaster, ShangHai191Master, count)
+    counter(SchwarzMaster, ChangChun_47Master, count)
+    counter(SchwarzMaster, Cam70_Master, count)
+    counter(SchwarzMaster, MoratenMaster, count)
     print("AIK_C")
-    counter(AIK_C3601, Shanghai3601, count)
-    counter(AIK_C3601, ChangChun3601, count)
-    counter(AIK_C3601, Cam_70_3601, count)
-    counter(AIK_C3601, Moraten3601, count)
+    counter(AIK_CMaster, ShangHai191Master, count)
+    counter(AIK_CMaster, ChangChun_47Master, count)
+    counter(AIK_CMaster, Cam70_Master, count)
+    counter(AIK_CMaster, MoratenMaster, count)
     print("rubeovax")
-    counter(Rubeovax3601, Shanghai3601, count)
-    counter(Rubeovax3601, ChangChun3601, count)
-    counter(Rubeovax3601, Cam_70_3601, count)
-    counter(Rubeovax3601, Moraten3601, count)
+    counter(RubeovaxMaster, ShangHai191Master, count)
+    counter(RubeovaxMaster, ChangChun_47Master, count)
+    counter(RubeovaxMaster, Cam70_Master, count)
+    counter(RubeovaxMaster, MoratenMaster, count)
 main()
